@@ -7,7 +7,7 @@ void setup() {
 void loop() {
   int message, one_bit, counter;
   if (Serial.available ()) {
-    message = Serial.parseInt ();
+    char message = Serial.parseInt ();
           Serial.println(message);
 
     digitalWrite (9, HIGH);
