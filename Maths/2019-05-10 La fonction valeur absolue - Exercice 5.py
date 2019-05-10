@@ -28,4 +28,9 @@ Created on Fri May 10 12:17:42 2019
 a=int(input("a="))
 b=int(input("b="))
 
-print("|",a,"t+",b,"|")
+print("")
+
+c=-b/a
+
+print ("si t >=",c,": |",a,"t +",b,"| (si ",a,"t +",b,">= 0)")
+print ("si t <",c,": - |",a,"t +",b,"| (si ",a,"t +",b,"< 0)")
