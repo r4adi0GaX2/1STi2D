@@ -30,7 +30,14 @@ b=int(input("b="))
 
 print("")
 
-c=-b/a
-
-print ("si t >=",c,": |",a,"t +",b,"| (si ",a,"t +",b,">= 0)")
-print ("si t <",c,": - |",a,"t +",b,"| (si ",a,"t +",b,"< 0)")
+if a != 0:
+    c=-b/a
+    print ("si t >=",c,":",a,"t +",b,"(si ",a,"t +",b,">= 0)")
+    print ("si t <",c,":",-a,"t +",-b,"(si ",a,"t +",b,"< 0)")
+else:
+    if b<0:
+        c=-b
+    else:
+        c=b
+    print(c)
+    
