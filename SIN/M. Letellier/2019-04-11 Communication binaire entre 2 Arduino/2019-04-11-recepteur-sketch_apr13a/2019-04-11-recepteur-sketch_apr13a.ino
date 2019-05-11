@@ -22,6 +22,6 @@ void loop() {
       message = (message + one_bit * poids) ;
       poids = (poids * 2) ;
     }
-  Serial.println(char message);  
+  Serial.println(message);  
   }
 }
