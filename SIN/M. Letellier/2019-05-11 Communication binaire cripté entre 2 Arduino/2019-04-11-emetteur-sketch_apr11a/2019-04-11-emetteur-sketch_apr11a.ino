@@ -18,7 +18,7 @@ void loop() {
     for (counter = 0; counter < 8; counter++) {
       one_bit = message % 2;
       delayMicroseconds (100);
-      digitalWrite (9, HIGH);
+      digitalWrite (9, HIGH);q
       
       if (one_bit == 1) {
         delayMicroseconds (210);
