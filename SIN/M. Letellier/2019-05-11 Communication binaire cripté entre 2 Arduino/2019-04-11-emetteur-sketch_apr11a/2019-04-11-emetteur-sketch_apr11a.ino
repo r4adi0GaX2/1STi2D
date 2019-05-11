@@ -1,18 +1,10 @@
-int password;
+char password;
 int getpassword = 0;
 
 void setup() {
   Serial.begin(9600);
   pinMode(9, OUTPUT);
   Serial.println("Hello, send your message...");
-
-  //  for (bool getpassword = false; getpassword == false; getpassword++) {
-  //    if (Serial.available()) {
-  //      password = Serial.read();
-  //      Serial.print("Password:");
-  //      Serial.print(password);
-  //    }
-  //  }
 }
 
 void loop() {
@@ -24,7 +16,7 @@ void loop() {
     Serial.println("Set a password");
     delay(5000);
     if (Serial.available()) {
-      Serial.println("Password seted.");
+      Serial.println("Password set.");
       password = Serial.read();
       getpassword = !getpassword;
     }
