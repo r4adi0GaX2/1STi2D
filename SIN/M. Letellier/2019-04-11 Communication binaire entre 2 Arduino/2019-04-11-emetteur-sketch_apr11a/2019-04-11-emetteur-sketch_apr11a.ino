@@ -8,7 +8,7 @@ void loop() {
   int message, one_bit, counter;
   
   if (Serial.available ()) {
-    char message = Serial.parseInt ();
+    message = Serial.parseInt ();
     Serial.println(message);
     digitalWrite (9, HIGH);
     delay (310);
