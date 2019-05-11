@@ -1,0 +1,13 @@
+int lectureConsigne = 0;
+int valeurRes = 0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  lectureConsigne = analogRead(A5);
+  valeurRes = ((1000 * 1023) - (1000 * lectureConsigne)) / lectureConsigne;
+  Serial.println(valeurRes);
+  delay(3000);
+}
