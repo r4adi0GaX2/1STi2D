@@ -19,6 +19,9 @@ void loop() {
   int message;
   char charmessage;
 
+  receive;
+  send;
+  
   //  while (getpassword == 0) {
   //    Serial.println("Set a password");
   //    delay(5000);
@@ -28,7 +31,8 @@ void loop() {
   //      getpassword = !getpassword;
   //    }
   //  }
-
+  void receive(){
+    
   duree_reception = pulseIn (BROCHE, HIGH, 4000000);
   //  Serial.println(duree_reception);
 
@@ -43,6 +47,9 @@ void loop() {
       poids = (poids * 2) ;
     }
     Serial.print(char(message));
+  }
+    
+void send() {
 
     if (Serial.available ()) {
       charmessage = Serial.read();
@@ -70,4 +77,5 @@ void loop() {
       }
     }
   }
+}
 }
