@@ -5,6 +5,8 @@ int getpassword = 0;
 
 unsigned long duree_reception ;
 int one_bit, message, counter, poids;
+void receive();
+void _send();
 
 void setup() {
   Serial.begin(9600);
@@ -19,9 +21,9 @@ void loop() {
   int message;
   char charmessage;
 
-  receive;
-  send;
-  
+  receive();
+  _send();
+
   //  while (getpassword == 0) {
   //    Serial.println("Set a password");
   //    delay(5000);
@@ -31,51 +33,48 @@ void loop() {
   //      getpassword = !getpassword;
   //    }
   //  }
-  void receive(){
-    
+}
+
+void receive() {
   duree_reception = pulseIn (BROCHE, HIGH, 4000000);
   //  Serial.println(duree_reception);
-
-  if ((duree_reception / 100 / 1000) == 3) {
-    message = 0 ;
-    poids = 1 ;
-    for (int i = 0 ; i < 8 ; i++) {
-      duree_reception = pulseIn (BROCHE, HIGH, 4000000);
-      //       Serial.println(duree_reception);
-      one_bit = (duree_reception / 100 / 1000) - 1 ;
-      message = (message + one_bit * poids);
-      poids = (poids * 2) ;
-    }
+  if ((duree_reception / 100 / 1000) != 3) return;
+  message = 0 ;
+  poids = 1 ;
+  for (int i = 0 ; i < 8 ; i++) {
+    duree_reception = pulseIn (BROCHE, HIGH, 4000000);
+    //       Serial.println(duree_reception);
+    one_bit = (duree_reception / 100 / 1000) - 1 ;
+    message = (message + one_bit * poids);
+    poids = (poids * 2) ;
     Serial.print(char(message));
   }
-    
-void send() {
+}
 
-    if (Serial.available ()) {
-      charmessage = Serial.read();
-      Serial.print(charmessage);
-      message = charmessage;
-      digitalWrite (9, HIGH);
-      delayMicroseconds (310);
+void _send() {
+  if (!Serial.available ()) return;
+  char charmessage = Serial.read();
+  Serial.print(charmessage);
+  message = charmessage;
+  digitalWrite (9, HIGH);
+  delayMicroseconds (310);
+  digitalWrite (9, LOW);
+
+  for (counter = 0; counter < 8; counter++) {
+    one_bit = message % 2;
+    delayMicroseconds (100);
+    digitalWrite (9, HIGH);
+
+    if (one_bit == 1) {
+      delayMicroseconds (210);
       digitalWrite (9, LOW);
-
-      for (counter = 0; counter < 8; counter++) {
-        one_bit = message % 2;
-        delayMicroseconds (100);
-        digitalWrite (9, HIGH);
-
-        if (one_bit == 1) {
-          delayMicroseconds (210);
-          digitalWrite (9, LOW);
-        } else {
-          delayMicroseconds(110);
-          digitalWrite (9, LOW);
-          delayMicroseconds(100);
-        }
-        message = message / 2;
-
-      }
+    } else {
+      delayMicroseconds(110);
+      digitalWrite (9, LOW);
+      delayMicroseconds(100);
     }
+    message = message / 2;
+
   }
 }
-}
+
