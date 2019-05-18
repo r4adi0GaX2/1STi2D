@@ -76,7 +76,7 @@ void sensor() {
     //Serial.println("Humidity: " + String(latestHumidity, 1) + " %");
     //Serial.println("Temp (F): " + String(latestTempF, 1) + " deg F");
     //Serial.println("Temp (C): " + String(latestTempC, 1) + " deg C");
-    server.send(200, "text/plain","Temp (C): " + String(latestTempC, 1) + " ºC" + "   " + "Humidity: " + String(latestHumidity, 1) + " %");
+    server.send(200, "text/plain","Temp: " + String(latestTempC, 1) + " ºC" + "   " + "Humidity: " + String(latestHumidity, 1) + " %");
     
   }
   else
