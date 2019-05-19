@@ -44,6 +44,7 @@ void setup(void) {
   }
 
   server.on("/", handleRoot);
+  server.on("text/plain", sensor);
 
   server.on("/inline", []() {
     server.send(200, "text/plain", "this works as well");
@@ -55,12 +56,14 @@ void setup(void) {
   Serial.println("HTTP server started");
 
   rht.begin(RHT03_DATA_PIN);
+
 }
 
 void loop(void) {
   server.handleClient();
 
-  sensor() ;
+ // sensor() ;
+  
 }
 
 void sensor() {
@@ -68,7 +71,7 @@ void sensor() {
 
   if (updateRet == 1)
   {
-   
+
     float latestHumidity = rht.humidity();
     float latestTempC = rht.tempC();
     float latestTempF = rht.tempF();
@@ -76,12 +79,12 @@ void sensor() {
     //Serial.println("Humidity: " + String(latestHumidity, 1) + " %");
     //Serial.println("Temp (F): " + String(latestTempF, 1) + " deg F");
     //Serial.println("Temp (C): " + String(latestTempC, 1) + " deg C");
-    server.send(200, "text/plain","Temp: " + String(latestTempC, 1) + " ºC" + "   " + "Humidity: " + String(latestHumidity, 1) + " %");
-    
+    server.send(200, "text/plain", "Temp: " + String(latestTempC, 1) + " ºC" + "   " + "Humidity: " + String(latestHumidity, 1) + " %");
+
   }
   else
   {
-    
+
     delay(RHT_READ_INTERVAL_MS);
   }
 
@@ -93,6 +96,25 @@ void handleRoot() {
   digitalWrite(led, 1);
   //server.send(200, "text/plain", "Temp (C): " + String(latestTempC, 1) + " deg C");
   digitalWrite(led, 0);
+
+    char temp[400];
+  int sec = millis() / 1000;
+  int min = sec / 60;
+  int hr = min / 60;
+
+  snprintf(temp, 400,
+
+           "<html>\
+  <head>\
+    <meta http-equiv='refresh' content='5'/>\
+  </head>\
+</html>",
+
+           hr, min % 60, sec % 60
+          );
+
+  server.send(200, "text/html", temp);
+  
 }
 
 void handleNotFound() {
