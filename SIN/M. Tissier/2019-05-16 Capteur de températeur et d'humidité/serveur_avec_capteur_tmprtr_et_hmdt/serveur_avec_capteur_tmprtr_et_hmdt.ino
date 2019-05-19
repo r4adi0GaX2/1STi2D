@@ -44,7 +44,7 @@ void setup(void) {
   }
 
   server.on("/", handleRoot);
-  server.on("text/plain", sensor);
+ // server.on("text/plain", sensor);
 
   server.on("/inline", []() {
     server.send(200, "text/plain", "this works as well");
@@ -62,7 +62,7 @@ void setup(void) {
 void loop(void) {
   server.handleClient();
 
- // sensor() ;
+  sensor() ;
   
 }
 
@@ -97,23 +97,23 @@ void handleRoot() {
   //server.send(200, "text/plain", "Temp (C): " + String(latestTempC, 1) + " deg C");
   digitalWrite(led, 0);
 
-    char temp[400];
-  int sec = millis() / 1000;
-  int min = sec / 60;
-  int hr = min / 60;
-
-  snprintf(temp, 400,
-
-           "<html>\
-  <head>\
-    <meta http-equiv='refresh' content='5'/>\
-  </head>\
-</html>",
-
-           hr, min % 60, sec % 60
-          );
-
-  server.send(200, "text/html", temp);
+//    char temp[400];
+//  int sec = millis() / 1000;
+//  int min = sec / 60;
+//  int hr = min / 60;
+//
+//  snprintf(temp, 400,
+//
+//           "<html>\
+//  <head>\
+//    <meta http-equiv='refresh' content='5'/>\
+//  </head>\
+//</html>",
+//
+//           hr, min % 60, sec % 60
+//          );
+//
+//  server.send(200, "text/html", temp);
   
 }
 
