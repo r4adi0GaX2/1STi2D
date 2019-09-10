@@ -37,7 +37,7 @@ void loop() {
   //  }
 }
 
-void _receive() {
+char _receive() {
   duree_reception = pulseIn (BROCHE, HIGH, 4000000);
   //  Serial.println(duree_reception);
   if ((duree_reception / 100 / 1000) != 3) return;
@@ -50,10 +50,11 @@ void _receive() {
     message = (message + one_bit * poids);
     poids = (poids * 2) ;
     Serial.print(char(message));
+    return message;
   }
 }
 
-void _send() {
+char _send() {
 
   char charmessage = Serial.read();
   Serial.print(charmessage);
@@ -76,6 +77,7 @@ void _send() {
       delayMicroseconds(100);
     }
     message = message / 2;
+    return message;
 
   }
 }

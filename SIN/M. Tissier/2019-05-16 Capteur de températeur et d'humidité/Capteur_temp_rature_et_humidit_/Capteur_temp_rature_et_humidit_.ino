@@ -29,7 +29,7 @@
 /////////////////////
 // Pin Definitions //
 /////////////////////
-const int RHT03_DATA_PIN = D4; // RHT03 data pin
+const int RHT03_DATA_PIN = 3; // RHT03 data pin
 
 ///////////////////////////
 // RHT03 Object Creation //
