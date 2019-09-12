@@ -5,8 +5,8 @@
 #include <ESP8266mDNS.h>
 
 const char* host = "Esp_Bot";
-const char* ssid = "A106RASPAIL";
-const char* password = "sti2draspail";
+const char* ssid = "freebox_LFVSZS";
+const char* password = "WiFiBarcel0na2019";
 
 uint8_t statuslediteration = 0;
 //uint8_t statusledstate = ;
@@ -14,7 +14,7 @@ uint8_t statuslediterationdone = 0;
 uint32_t laststatusledblink=millis();
 uint32_t lastsandbyblink=millis();
 
-IPAddress localIP(192,168,2,60);
+IPAddress localIP(192,168,0,17);
 IPAddress gateway(192,168,2,199);
 IPAddress subnet(255,255,255,0);
 IPAddress dns(172,100,1,1);
